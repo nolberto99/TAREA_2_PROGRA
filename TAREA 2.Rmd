@@ -1,0 +1,181 @@
+---
+title: "TAREA 2"
+author: "GRUPO 17 (Comeca Ramirez, Rojas Aylas, Ruiz Marticorena)"
+date: "26/11/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 01
+¿Qué cantidad de dinero sobra al repartir 10000$ entre 3 personas?
+```{r}
+10000%%3
+```
+## 02
+¿Es el número 4560 divisible por 3?
+```{r}
+0==(4560%%3)
+
+```
+## 03
+Construya un vector con los números enteros del 2 al 87. ¿Cuáles de esos números son divisibles por 7?
+```{r}
+for (x in 2:87) { 
+  if (x%%7 == 0) {
+    print(x)
+  }
+}
+```
+## 04
+Construya dos vectores, el primero con los números enteros desde 7 hasta 3, el segundo vector con los primeros cinco numeros positivos divisibles por 5.
+Sea A la condicion de ser par en el primer vector.
+Sea B la condicion de ser mayor que 10 en el segundo vector.
+En cual de las 5 posiciones se cumple A y B simultaneamente?
+```{r}
+Primero=c(3,4,5,6,7)
+Segundo=c(5,10,15,20,25)
+df=data.frame(Primero, Segundo)
+df[(df$Primero%in%c(4,6)) & (df$Segundo>10),]
+```
+## 05
+Consulte este link en el cual hay una anéctoda de Gauss niño. Use R para obtener el resultado de la suma solicitada por el profesor del niño Gauss.
+```{r}
+a1<- c(1:100)
+sum(a1)
+```
+## 06
+Construya un vector con los siguientes elementos: 1, -4, 5, 9, -4. Escriba un procedimiento para extraer las posiciones dónde esta el valor mínimo en el vector.
+```{r}
+ab<-c(1, -4, 5, 9, -4.)
+which.min(ab)
+```
+## 07
+Calcular 8!
+```{r}
+1*2*3*4*5*6*7*8
+```
+## 08
+Evaluar la siguiente sumatoria
+```{r}
+a5<- 3:7
+a6<-exp(a5)
+sum(a6)
+```
+## 09
+Evaluar la siguiente productoria
+```{r}
+d<- 1:10
+e<-log(sqrt(d))
+prod(e)
+```
+
+## 10
+Realizar una funcion que permita calcular el área de una corona circular.
+```{r}
+Area=function(Areacircular, Areadeltriangulo){Areacircular - Areadeltriangulo}
+Ac=c("θ*R^2 / 2")
+At=c("c*d / 2")
+```
+## 11
+Construya un vector cualquiera e inviertalo, es decir, que el primer elemento quede de último, el segundo de penúltimo y así sucesivamente. Compare su resultado con el de la función rev
+```{r}
+num<-c(1,2,3,4,5,6,7,8,9,10)
+rev(num)
+```
+
+## 12
+Calcular lo siguiente
+```{r}
+a <- 10:100
+b<- a**3
+c<- 4*a**2
+sum(b+c)
+```
+## 13
+Calcular lo siguiente
+```{r}
+n <- 1:25
+p <- 3^n/n^2
+o<- 2^n/n
+sum(o+p)
+```
+### 14
+Leer el siguiente link
+```{r}
+okl <- read.table(file = "C:/Users/Dell/Desktop/CERTIFICADOS/Paises.txt", header = TRUE)
+okl
+```
+### 14.1
+Calcular el numero de variables del dataset
+```{r}
+colnames(okl)
+length(okl)
+
+```
+
+### 14.2
+Cuantos paises hay en el dataset
+```{r}
+okl$Pais
+a3<-okl$Pais
+length(a3)
+```
+### 14.3
+Cual es el pais con mayor poblacion
+```{r}
+apply(okl[c("poblacion")],2,max)
+MAX<-max(okl$poblacion)
+
+a33<-c(okl$poblacion)
+okl$Pais[which.max(a33)]
+```
+### 14.4
+Cual es el paise con alfabetizacion mas baja
+```{r}
+a32<-min(okl$alfabetizacion)
+okl$Pais[which(okl$alfabetizacion==a32)]
+```
+
+## 15
+En R hay unas bases de datos incluidas, una de ellas es la base de datos llamada mtcars. Para conocer las variables que estan en mtcars usted puede escribir en la consola ?mtcars o tambien help(mtcars). De la base mtcars obtenga bases de datos que cumplan las siguientes condiciones.
+### 15.1
+Autos que tengan un rendimiento menor a 18 millas por galon de combustible.
+```{r}
+mtcars$mpg
+rendimiento<-mtcars$mpg<18
+mtcars[rendimiento,]
+```
+### 15.2
+Autos que tengan 4 cilindros.
+```{r}
+cilindros_4<- mtcars$cy==4
+mtcars[cilindros_4,]
+```
+### 15.3
+Autos que pesen mas de 2500 libras y tengan transmision manual.
+```{r}
+(mtcars$wt>2.500)
+mtcars[(mtcars$wt>2.500),]
+(mtcars$am>0)
+mtcars[(mtcars$am>0),]
+mtcars[(mtcars$wt>2.500)&(mtcars$am>0),]
+```
+## 16
+La ecuacion de tiempo es la diferencia entre el tiempo solar medio y el tiempo solar aparente (Referencia).  Si bien esta varía, la forma analítica de esta ecuación se muestra a continuación (Usar x como un rangode 0 a 365). Replicar el gráwa verfico:
+
+
+```{r}
+x<-seq(0,365)
+y<-2*pi*(x-81)/365
+max(y)
+min(y)
+b<-min(y):max(y)
+a<-9.87*sin(2*y)-7.53*cos(y)-1.5*sin(y)
+plot(a,type="b",col="green",font=2,ylab="Minutos",xlab="Meses")
+title('Ecuación del tiempo')
+```
+
+
